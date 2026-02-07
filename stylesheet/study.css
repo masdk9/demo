@@ -1,0 +1,594 @@
+
+/* ========================================
+   STUDY.CSS - Study Section Styles
+   ======================================== */
+
+/* Study Section Container */
+#studySection {
+    padding-bottom: 2rem;
+}
+
+/* Resources Grid */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.resource-card {
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.resource-card:active {
+    transform: translateY(-2px);
+}
+
+.resource-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.8rem;
+    transition: var(--transition);
+}
+
+.resource-card:hover .resource-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.resource-card h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Specific Resource Icons Colors */
+#notesCard .resource-icon {
+    background: linear-gradient(135deg, #FF5252 0%, #F44336 100%);
+}
+
+#booksCard .resource-icon {
+    background: linear-gradient(135deg, #66BB6A 0%, #4CAF50 100%);
+}
+
+#videosCard .resource-icon {
+    background: linear-gradient(135deg, #42A5F5 0%, #2196F3 100%);
+}
+
+#pyqCard .resource-icon {
+    background: linear-gradient(135deg, #FFA726 0%, #FF9800 100%);
+}
+
+/* Quiz Grid */
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.quiz-card {
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    padding: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.quiz-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--success-color);
+}
+
+.quiz-card:active {
+    transform: translateY(-1px);
+}
+
+.quiz-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 0.75rem;
+    background: linear-gradient(135deg, #AB47BC 0%, #9C27B0 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.quiz-card:hover .quiz-icon {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.quiz-card h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Exam Grid */
+.exam-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.exam-card {
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    padding: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.exam-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--warning-color);
+}
+
+.exam-card:active {
+    transform: translateY(-1px);
+}
+
+.exam-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 0.75rem;
+    background: linear-gradient(135deg, #29B6F6 0%, #0288D1 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.exam-card:hover .exam-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.exam-card h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Notes List */
+.notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.note-item {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.note-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.note-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(244, 67, 54, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.note-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.note-content h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.note-content p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.note-item .btn {
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+}
+
+/* Latest Updates */
+.latest-updates {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.latest-updates h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.latest-updates h5 i {
+    color: var(--primary-color);
+}
+
+.update-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--background-color);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.update-item:last-child {
+    margin-bottom: 0;
+}
+
+.update-item:hover {
+    background: rgba(33, 150, 243, 0.05);
+    transform: translateX(5px);
+}
+
+.update-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--primary-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.update-content {
+    flex: 1;
+}
+
+.update-content h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.update-content p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.update-arrow {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    align-self: center;
+}
+
+/* Study Progress */
+.study-progress {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    color: #FFFFFF;
+    margin-bottom: 2rem;
+}
+
+.study-progress h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.progress-bar-container {
+    background: rgba(255, 255, 255, 0.2);
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+}
+
+.progress-bar-fill {
+    background: #FFFFFF;
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Study Streak */
+.study-streak {
+    display: flex;
+    justify-content: space-around;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.streak-item {
+    text-align: center;
+}
+
+.streak-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.streak-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.quick-action-btn {
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.quick-action-btn:hover {
+    border-color: var(--primary-color);
+    transform: translateX(5px);
+    box-shadow: var(--shadow-sm);
+}
+
+.quick-action-btn i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.quick-action-btn span {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Empty State */
+.study-empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--surface-color);
+    border-radius: 16px;
+    border: 2px dashed var(--border-color);
+}
+
+.study-empty-state i {
+    font-size: 4rem;
+    color: var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.study-empty-state h5 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.study-empty-state p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.study-empty-state .btn {
+    padding: 0.75rem 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .resources-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+    }
+    
+    .resource-card {
+        padding: 1.25rem 1rem;
+    }
+    
+    .resource-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.6rem;
+    }
+    
+    .resource-card h5 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .resources-grid {
+        gap: 0.75rem;
+    }
+    
+    .resource-card {
+        padding: 1rem 0.75rem;
+        border-radius: 12px;
+    }
+    
+    .resource-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        border-radius: 12px;
+    }
+    
+    .resource-card h5 {
+        font-size: 0.95rem;
+    }
+    
+    .quiz-grid,
+    .exam-grid {
+        gap: 0.75rem;
+    }
+    
+    .quiz-card,
+    .exam-card {
+        padding: 1rem 0.75rem;
+        border-radius: 12px;
+    }
+    
+    .quiz-icon,
+    .exam-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+        border-radius: 10px;
+    }
+    
+    .quiz-card h6,
+    .exam-card h6 {
+        font-size: 0.95rem;
+    }
+    
+    .note-item {
+        padding: 1rem;
+    }
+    
+    .note-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
+    .note-content h6 {
+        font-size: 0.95rem;
+    }
+    
+    .study-progress {
+        padding: 1.25rem;
+    }
+    
+    .study-streak {
+        padding: 1.25rem;
+    }
+    
+    .streak-number {
+        font-size: 1.7rem;
+    }
+    
+    .streak-label {
+        font-size: 0.8rem;
+    }
+    
+    .quick-actions {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .study-streak {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .note-icon {
+    background: rgba(244, 67, 54, 0.2);
+}
+
+body.dark-mode .update-item:hover {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+body.dark-mode .progress-bar-container {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .study-empty-state {
+    background: rgba(255, 255, 255, 0.02);
+}
