@@ -1,0 +1,604 @@
+
+/* ========================================
+   CREATION.CSS - Post Creation Modal Styles
+   ======================================== */
+
+/* Create Post Modal */
+#createPostModal .modal-dialog {
+    max-width: 650px;
+}
+
+#createPostModal .modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+#createPostModal .modal-header {
+    background: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.25rem 1.5rem;
+    border-radius: 20px 20px 0 0;
+}
+
+#createPostModal .modal-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+#createPostModal .btn-close {
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+#createPostModal .btn-close:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+#createPostModal .modal-body {
+    padding: 1.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+#createPostModal .modal-footer {
+    background: var(--surface-color);
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    border-radius: 0 0 20px 20px;
+}
+
+/* Post Type Selection */
+.post-type-selection {
+    margin-bottom: 1.5rem;
+}
+
+.post-type-selection h6 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.post-types {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.post-type-btn {
+    flex: 1;
+    min-width: 90px;
+    padding: 1rem 0.75rem;
+    background: var(--background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.post-type-btn i {
+    font-size: 1.5rem;
+}
+
+.post-type-btn span {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.post-type-btn:hover {
+    background: rgba(33, 150, 243, 0.05);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+
+.post-type-btn:active {
+    transform: translateY(0);
+}
+
+.post-type-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #FFFFFF;
+    box-shadow: var(--shadow-md);
+}
+
+/* Post Forms */
+.post-form {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.post-form.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Text Post Form */
+#textPostForm textarea {
+    min-height: 150px;
+    resize: vertical;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Background Color Selector */
+.bg-color-selector {
+    margin-top: 1rem;
+}
+
+.bg-color-selector .form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.color-options {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.color-option {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    border: 3px solid transparent;
+}
+
+.color-option:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.color-option.active {
+    border-color: var(--text-primary);
+    transform: scale(1.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.color-option.active::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Quiz Post Form */
+#quizPostForm .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#quizPostForm .input-group {
+    background: var(--background-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#quizPostForm .input-group-text {
+    background: transparent;
+    border: none;
+    padding: 0.75rem;
+}
+
+#quizPostForm .form-check-input {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+#quizPostForm .form-check-input:checked {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+#quizPostForm .form-control {
+    border: none;
+    background: transparent;
+    padding: 0.75rem;
+}
+
+/* Poll Post Form */
+#pollPostForm .poll-options {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+#pollPostForm .form-check {
+    flex: 1;
+    padding: 1rem;
+    background: var(--background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#pollPostForm .form-check:hover {
+    border-color: var(--primary-color);
+    background: rgba(33, 150, 243, 0.05);
+}
+
+#pollPostForm .form-check-input {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-top: 0;
+}
+
+#pollPostForm .form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+#pollPostForm .form-check-label {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    color: var(--text-primary);
+}
+
+#pollPostForm .form-check-input:checked ~ .form-check-label {
+    color: var(--primary-color);
+}
+
+/* Flashcard Form */
+#cardPostForm .form-control {
+    font-size: 1rem;
+}
+
+#cardPostForm input {
+    font-weight: 600;
+}
+
+#cardPostForm textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Media Post Form */
+#mediaPostForm textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    background: var(--background-color);
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-area:hover {
+    border-color: var(--primary-color);
+    background: rgba(33, 150, 243, 0.05);
+}
+
+.upload-area i {
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.upload-area:hover i {
+    color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.upload-area p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.upload-area.active {
+    border-color: var(--primary-color);
+    background: rgba(33, 150, 243, 0.1);
+}
+
+/* Image Preview */
+.image-preview {
+    position: relative;
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.image-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+.remove-image-btn:hover {
+    background: var(--error-color);
+    transform: scale(1.1);
+}
+
+/* Publish Button */
+#publishPostBtn {
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+#publishPostBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+}
+
+#publishPostBtn:active {
+    transform: translateY(0);
+}
+
+#publishPostBtn.loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+}
+
+#publishPostBtn.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #FFFFFF;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Form Validation */
+.form-control.invalid {
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+.form-control.invalid:focus {
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.2);
+}
+
+.validation-message {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.validation-message i {
+    font-size: 0.9rem;
+}
+
+/* Character Counter */
+.char-counter {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.char-counter.warning {
+    color: var(--warning-color);
+}
+
+.char-counter.error {
+    color: var(--error-color);
+}
+
+/* Option Remove Button */
+.remove-option-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: var(--error-color);
+    color: #FFFFFF;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.8rem;
+}
+
+.remove-option-btn:hover {
+    background: #D32F2F;
+    transform: scale(1.1);
+}
+
+/* Add Option Button */
+.add-option-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--background-color);
+    border: 2px dashed var(--border-color);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.add-option-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: rgba(33, 150, 243, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #createPostModal .modal-dialog {
+        max-width: 100%;
+        margin: 0.5rem;
+    }
+    
+    #createPostModal .modal-body {
+        max-height: 60vh;
+        padding: 1rem;
+    }
+    
+    .post-types {
+        gap: 0.5rem;
+    }
+    
+    .post-type-btn {
+        min-width: 80px;
+        padding: 0.85rem 0.5rem;
+    }
+    
+    .post-type-btn i {
+        font-size: 1.3rem;
+    }
+    
+    .post-type-btn span {
+        font-size: 0.75rem;
+    }
+    
+    .color-options {
+        gap: 0.5rem;
+    }
+    
+    .color-option {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    #createPostModal .modal-content {
+        border-radius: 16px;
+    }
+    
+    #createPostModal .modal-header {
+        padding: 1rem;
+    }
+    
+    #createPostModal .modal-title {
+        font-size: 1.1rem;
+    }
+    
+    #createPostModal .modal-body {
+        padding: 0.75rem;
+    }
+    
+    #createPostModal .modal-footer {
+        padding: 0.75rem 1rem;
+    }
+    
+    .post-type-btn {
+        min-width: 70px;
+        padding: 0.75rem 0.4rem;
+    }
+    
+    .post-type-btn i {
+        font-size: 1.2rem;
+    }
+    
+    #pollPostForm .poll-options {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    #publishPostBtn {
+        padding: 0.65rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .upload-area {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+body.dark-mode .upload-area:hover {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+body.dark-mode .color-option.active::after {
+    color: #FFFFFF;
+}
+
+body.dark-mode #quizPostForm .input-group {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode #pollPostForm .form-check {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .add-option-btn {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .add-option-btn:hover {
+    background: rgba(33, 150, 243, 0.1);
+}
