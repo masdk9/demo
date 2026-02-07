@@ -1,0 +1,341 @@
+/* ========================================
+   AUTH.JS - Authentication Logic
+   ======================================== */
+
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeAuth();
+});
+
+// Initialize Authentication
+function initializeAuth() {
+    // Get form elements
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const showSignupLink = document.getElementById('showSignup');
+    const showLoginLink = document.getElementById('showLogin');
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    
+    // Show/Hide form toggle
+    if (showSignupLink) {
+        showSignupLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showSignupFormFunc();
+        });
+    }
+    
+    if (showLoginLink) {
+        showLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showLoginFormFunc();
+        });
+    }
+    
+    // Login button click
+    if (loginBtn) {
+        loginBtn.addEventListener('click', handleLogin);
+    }
+    
+    // Signup button click
+    if (signupBtn) {
+        signupBtn.addEventListener('click', handleSignup);
+    }
+    
+    // Enter key press for login
+    const loginEmail = document.getElementById('loginEmail');
+    const loginPassword = document.getElementById('loginPassword');
+    
+    if (loginEmail) {
+        loginEmail.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleLogin();
+        });
+    }
+    
+    if (loginPassword) {
+        loginPassword.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleLogin();
+        });
+    }
+    
+    // Enter key press for signup
+    const signupName = document.getElementById('signupName');
+    const signupEmail = document.getElementById('signupEmail');
+    const signupPassword = document.getElementById('signupPassword');
+    
+    if (signupName) {
+        signupName.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSignup();
+        });
+    }
+    
+    if (signupEmail) {
+        signupEmail.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSignup();
+        });
+    }
+    
+    if (signupPassword) {
+        signupPassword.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSignup();
+        });
+    }
+    
+    console.log('Auth initialized');
+}
+
+// Show Signup Form
+function showSignupFormFunc() {
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    
+    if (loginForm) {
+        loginForm.classList.add('d-none');
+    }
+    
+    if (signupForm) {
+        signupForm.classList.remove('d-none');
+    }
+    
+    // Clear any error messages
+    hideError('loginError');
+    hideError('signupError');
+}
+
+// Show Login Form
+function showLoginFormFunc() {
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    
+    if (signupForm) {
+        signupForm.classList.add('d-none');
+    }
+    
+    if (loginForm) {
+        loginForm.classList.remove('d-none');
+    }
+    
+    // Clear any error messages
+    hideError('loginError');
+    hideError('signupError');
+}
+
+// Handle Login
+async function handleLogin() {
+    const emailInput = document.getElementById('loginEmail');
+    const passwordInput = document.getElementById('loginPassword');
+    const loginBtn = document.getElementById('loginBtn');
+    const errorDiv = document.getElementById('loginError');
+    
+    // Get values
+    const email = emailInput?.value.trim();
+    const password = passwordInput?.value;
+    
+    // Validate
+    if (!email || !password) {
+        showError('loginError', 'Please enter email and password');
+        return;
+    }
+    
+    // Validate email format
+    if (!isValidEmail(email)) {
+        showError('loginError', 'Please enter a valid email address');
+        return;
+    }
+    
+    try {
+        // Show loading state
+        setButtonLoading(loginBtn, true);
+        hideError('loginError');
+        
+        // Sign in with Firebase
+        if (window.firebaseConfig && window.firebaseConfig.auth) {
+            await window.firebaseConfig.auth.signInWithEmailAndPassword(email, password);
+            console.log('Login successful');
+            
+            // Clear form
+            if (emailInput) emailInput.value = '';
+            if (passwordInput) passwordInput.value = '';
+        } else {
+            throw new Error('Firebase not initialized');
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        
+        // Show error message
+        let errorMessage = 'Invalid email or password. Please try again.';
+        
+        if (window.firebaseConfig && window.firebaseConfig.handleFirebaseError) {
+            errorMessage = window.firebaseConfig.handleFirebaseError(error);
+        }
+        
+        showError('loginError', errorMessage);
+        
+        // Reset button
+        setButtonLoading(loginBtn, false);
+    }
+}
+
+// Handle Signup
+async function handleSignup() {
+    const nameInput = document.getElementById('signupName');
+    const emailInput = document.getElementById('signupEmail');
+    const passwordInput = document.getElementById('signupPassword');
+    const signupBtn = document.getElementById('signupBtn');
+    
+    // Get values
+    const name = nameInput?.value.trim();
+    const email = emailInput?.value.trim();
+    const password = passwordInput?.value;
+    
+    // Validate
+    if (!name || !email || !password) {
+        showError('signupError', 'Please fill in all fields');
+        return;
+    }
+    
+    // Validate email format
+    if (!isValidEmail(email)) {
+        showError('signupError', 'Please enter a valid email address');
+        return;
+    }
+    
+    // Validate password length
+    if (password.length < 6) {
+        showError('signupError', 'Password must be at least 6 characters');
+        return;
+    }
+    
+    try {
+        // Show loading state
+        setButtonLoading(signupBtn, true);
+        hideError('signupError');
+        
+        // Create user with Firebase
+        if (window.firebaseConfig && window.firebaseConfig.auth) {
+            const userCredential = await window.firebaseConfig.auth.createUserWithEmailAndPassword(email, password);
+            
+            // Update profile with name
+            await userCredential.user.updateProfile({
+                displayName: name
+            });
+            
+            console.log('Signup successful');
+            
+            // Clear form
+            if (nameInput) nameInput.value = '';
+            if (emailInput) emailInput.value = '';
+            if (passwordInput) passwordInput.value = '';
+            
+            // User document will be created automatically by onAuthStateChanged in firebase-cfg.js
+        } else {
+            throw new Error('Firebase not initialized');
+        }
+    } catch (error) {
+        console.error('Signup error:', error);
+        
+        // Show error message
+        let errorMessage = 'Error creating account. Please try again.';
+        
+        if (window.firebaseConfig && window.firebaseConfig.handleFirebaseError) {
+            errorMessage = window.firebaseConfig.handleFirebaseError(error);
+        }
+        
+        showError('signupError', errorMessage);
+        
+        // Reset button
+        setButtonLoading(signupBtn, false);
+    }
+}
+
+// Show Error Message
+function showError(errorId, message) {
+    const errorDiv = document.getElementById(errorId);
+    if (errorDiv) {
+        const errorText = errorDiv.querySelector('.error-text');
+        if (errorText) {
+            errorText.textContent = message;
+        }
+        errorDiv.classList.remove('d-none');
+    }
+}
+
+// Hide Error Message
+function hideError(errorId) {
+    const errorDiv = document.getElementById(errorId);
+    if (errorDiv) {
+        errorDiv.classList.add('d-none');
+    }
+}
+
+// Set Button Loading State
+function setButtonLoading(button, isLoading) {
+    if (!button) return;
+    
+    const btnText = button.querySelector('.btn-text');
+    const btnSpinner = button.querySelector('.btn-spinner');
+    
+    if (isLoading) {
+        button.classList.add('loading');
+        if (btnText) btnText.classList.add('d-none');
+        if (btnSpinner) btnSpinner.classList.remove('d-none');
+        button.disabled = true;
+    } else {
+        button.classList.remove('loading');
+        if (btnText) btnText.classList.remove('d-none');
+        if (btnSpinner) btnSpinner.classList.add('d-none');
+        button.disabled = false;
+    }
+}
+
+// Validate Email Format
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Password Reset (for future use)
+async function handlePasswordReset(email) {
+    try {
+        if (window.firebaseConfig && window.firebaseConfig.auth) {
+            await window.firebaseConfig.auth.sendPasswordResetEmail(email);
+            alert('Password reset email sent! Please check your inbox.');
+        }
+    } catch (error) {
+        console.error('Password reset error:', error);
+        
+        let errorMessage = 'Error sending reset email. Please try again.';
+        
+        if (window.firebaseConfig && window.firebaseConfig.handleFirebaseError) {
+            errorMessage = window.firebaseConfig.handleFirebaseError(error);
+        }
+        
+        alert(errorMessage);
+    }
+}
+
+// Google Sign In (for future use)
+async function signInWithGoogle() {
+    try {
+        if (window.firebaseConfig && window.firebaseConfig.auth) {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            await window.firebaseConfig.auth.signInWithPopup(provider);
+            console.log('Google sign in successful');
+        }
+    } catch (error) {
+        console.error('Google sign in error:', error);
+        alert('Error signing in with Google. Please try again.');
+    }
+}
+
+// Export functions
+window.authFunctions = {
+    handleLogin,
+    handleSignup,
+    handlePasswordReset,
+    signInWithGoogle,
+    showError,
+    hideError
+};
+
+console.log('Auth.js loaded successfully');
