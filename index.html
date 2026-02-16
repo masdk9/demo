@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="hi">
 
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +8,11 @@
 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <!-- Font Awesome Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,8 +20,7 @@
 <!-- Custom CSS Files -->
 <link rel="stylesheet" href="https://masd.neocities.org/anna/stylesheet/main.css">
 <link rel="stylesheet" href="https://masd.neocities.org/anna/stylesheet/auth.css">
-<link rel="stylesheet" href="https://masd.neocities.org/anna/stylesheet/feed.css">
-<link rel="stylesheet" href="https://masd.neocities.org/anna/stylesheet/postcard.css">
+<link rel="stylesheet" href="https://masd.neocities.org/anna/stylesheet/posts.css">
 <link rel="stylesheet" href="https://masd.neocities.org/anna/stylesheet/creation.css">
 <link rel="stylesheet" href="https://masd.neocities.org/anna/stylesheet/profile.css">
 <link rel="stylesheet" href="https://masd.neocities.org/anna/stylesheet/study.css">
@@ -32,19 +32,20 @@
 
 <!-- Initial Loading Spinner -->
 <div id="initialLoader" class="initial-loader">
-<div class="spinner-container">
-<div class="spinner-border text-primary" role="status">
-<span class="visually-hidden">Loading...</span>
+<i class="fas fa-graduation-cap loader-icon"></i>
+<div class="loader-content">
+<h2>Welcome to Sahpathi</h2>
+<p>Learn, Ask, Grow Together</p>
+<div class="loader-spinner"></div>
 </div>
-<p class="loader-text mt-3">Loading..</p>
-</div></div>
+</div>
 
 <!-- Login/Signup -->
 <div id="authSection" class="auth-section d-none">
 <div class="auth-container">
 <div class="auth-header text-center mb-4">
 <i class="fas fa-graduation-cap auth-logo"></i>
-  <h2 class="auth-title">Sahpathi</h2>
+<h2 class="auth-title">Sahpathi</h2>
 <p class="auth-subtitle">Learn, Ask, Grow Together</p>
 </div>
 
@@ -57,7 +58,8 @@
 <div class="input-group">
 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
 <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
-</div></div>
+</div>
+</div>
 
 <div class="mb-3">
 <label for="loginPassword" class="form-label">Password</label>
@@ -80,7 +82,7 @@
 </span>
 </button>
 
-<p class="text-center mt-3 switch-auth"> Don't have an account?  <a href="#" id="showSignup" class="auth-link">Sign Up</a></p>
+<p class="text-center mt-3 switch-auth">Don't have an account? <a href="#" id="showSignup" class="auth-link">Sign Up</a></p>
 </div>
 
 <!-- Signup Form -->
@@ -92,21 +94,24 @@
 <div class="input-group">
 <span class="input-group-text"><i class="fas fa-user"></i></span>
 <input type="text" class="form-control" id="signupName" placeholder="Enter your name">
-</div></div>
+</div>
+</div>
 
 <div class="mb-3">
 <label for="signupEmail" class="form-label">Email</label>
 <div class="input-group">
 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
 <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email">
-</div></div>
+</div>
+</div>
 
 <div class="mb-3">
 <label for="signupPassword" class="form-label">Password</label>
 <div class="input-group">
 <span class="input-group-text"><i class="fas fa-lock"></i></span>
 <input type="password" class="form-control" id="signupPassword" placeholder="Create a password">
-</div></div>
+</div>
+</div>
 
 <div id="signupError" class="error-message d-none">
 <i class="fas fa-exclamation-circle"></i>
@@ -121,20 +126,13 @@
 </span>
 </button>
 
-<p class="text-center mt-3 switch-auth">  Already have an account?   <a href="#" id="showLogin" class="auth-link">Login</a></p>
-</div></div></div>
+<p class="text-center mt-3 switch-auth">Already have an account? <a href="#" id="showLogin" class="auth-link">Login</a></p>
+</div>
+</div>
+</div>
 
 <!-- Main App Section -->
 <div id="mainApp" class="main-app d-none">
-
-<!-- Content Loader -->
-<div id="contentLoader" class="content-loader">
-<div class="spinner-border text-primary" role="status">
-<span class="visually-hidden">Loading content...</span>
-</div>
-<p class="loader-text mt-2">Loading your feed...</p>
-</div>
-
 <!-- Header -->
 <header id="mainHeader" class="main-header d-none">
 <div class="container-fluid">
@@ -144,42 +142,45 @@
 <span class="header-brand">Study Social</span>
 </div>
 <div class="header-right">
-<button class="header-icon-btn" id="themeToggle" title="Toggle Theme">
-<i class="fas fa-moon"></i>
+<button class="header-icon-btn" id="messagesBtn">
+<i class="bi bi-chat-square-dots-fill"></i>
 </button>
-
-<button class="header-icon-btn" id="createPostBtn" title="Create Post">
-<i class="fas fa-plus-circle"></i>
-</button>
-
-
 </div>
 </div>
 </div>
 </header>
-
 <!-- Main Content Area -->
 <main id="mainContent" class="main-content d-none">
 
 <!-- Home Feed Section -->
 <section id="homeFeed" class="content-section active">
-<div class="container">
+<div class="container-fluid p-0">
 <div class="feed-container">
 
-<!-- Posts will be dynamically loaded here -->
+<!-- POST CREATION TRIGGER -->
+<div class="post-creation-trigger" id="createPostBtn">
+<div class="post-trigger-avatar">
+<i class="bi bi-person-circle text-white study-icon-sm"></i>
+</div>
+<div class="post-trigger-input">
+<span>What's Your Question?</span>
+</div>
+</div>
+
+<!-- Posts will be loaded here -->
 <div id="feedPosts"></div>
+
 </div>
 </div>
 </section>
 
 <!-- Notification Section -->
 <section id="notificationSection" class="content-section">
-<div class="container">
+<div class="container-fluid">
 <div class="section-header">
 <h4><i class="fas fa-bell me-2"></i>Notifications</h4>
 </div>
 <div class="notification-list">
-<!-- Dummy Notifications -->
 <div class="notification-item unread">
 <div class="notification-icon">
 <i class="fas fa-heart text-danger"></i>
@@ -196,113 +197,132 @@
 <div class="notification-content">
 <p><strong>Amit Kumar</strong> commented on your post</p>
 <span class="notification-time">5 hours ago</span>
-</div></div>
+</div>
+</div>
 <div class="notification-item">
-<div class="notification-icon"><i class="fas fa-user-plus text-success"></i></div>
+<div class="notification-icon">
+<i class="fas fa-user-plus text-success"></i>
+</div>
 <div class="notification-content">
 <p><strong>Priya Sharma</strong> started following you</p>
 <span class="notification-time">1 day ago</span>
-</div></div>
-</div></div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- Study Section -->
 <section id="studySection" class="content-section">
-<div class="container">
-<div class="section-header mb-4">
-<h4><i class="fas fa-book me-2"></i>Study Resources</h4></div>
+<div class="container-fluid">
 
-<!-- Resources Grid -->
-<div class="resources-grid mb-5">
-
-<div class="resource-card" id="notesCard">
-<div class="resource-icon"><i class="fas fa-file-pdf"></i></div><h5>Notes</h5></div>
-
-<div class="resource-card" id="booksCard">
-<div class="resource-icon">
-<i class="fas fa-book-open"></i>
-</div>
-<h5>Books</h5>
-</div>
-<div class="resource-card" id="videosCard">
-<div class="resource-icon">
-<i class="fas fa-play-circle"></i>
-</div>
-<h5>Videos</h5>
-</div>
-<div class="resource-card" id="pyqCard">
-<div class="resource-icon">
-<i class="fas fa-clock"></i>
-</div>
-<h5>PYQ</h5>
-  </div>
-</div>
-
-<!-- Quiz Zone -->
-<div class="section-header mb-4">
-<h5><i class="fas fa-trophy me-2"></i>Quiz Zone</h5>
-</div>
-<div class="quiz-grid mb-5">
-<div class="quiz-card">
-<div class="quiz-icon">
-<i class="fas fa-calendar-week"></i>
-</div>
-<h6>Weekly</h6>
-</div>
-<div class="quiz-card">
-<div class="quiz-icon">
-<i class="fas fa-calendar-alt"></i>
-</div>
-<h6>Monthly</h6>
-</div>
-<div class="quiz-card">
-<div class="quiz-icon">
-<i class="fas fa-folder"></i>
-</div>
-<h6>Subject</h6>
-</div>
-<div class="quiz-card">
-<div class="quiz-icon">
-<i class="fas fa-trophy"></i>
-</div>
-<h6>Daily</h6>
-</div></div>
-
-<!-- Select Exam -->
-<div class="section-header mb-4">
-<h5><i class="fas fa-graduation-cap me-2"></i>Select Exam</h5>
-</div>
+<!-- Select Exam (15 Cards) -->
 <div class="exam-grid">
 <div class="exam-card">
-<div class="exam-icon">
-<i class="fas fa-briefcase"></i>
+<div class="exam-icon"><i class="bi bi-file-earmark-pdf-fill text-white study-icon-sm"></i></div>
+<h6>NOTES</h6>
 </div>
+<div class="exam-card">
+<div class="exam-icon"><i class="bi bi-journal-text text-white study-icon-sm"></i></div>
+<h6>BOOKS</h6>
+</div>
+<div class="exam-card">
+<div class="exam-icon"><i class="bi bi-play-circle-fill text-white study-icon-sm"></i></div>
+<h6>VIDEOS</h6>
+</div>
+<div class="exam-card">
+<div class="exam-icon"><i class="bi bi-journal-bookmark-fill text-white study-icon-sm"></i></div>
+<h6>PYQs</h6>
+</div>
+<div class="exam-card">
+<div class="exam-icon"><i class="bi bi-question-circle-fill text-white study-icon-sm"></i></div>
+<h6>TEST</h6>
+</div>
+<div class="exam-card">
+<div class="exam-icon"><i class="bi bi-trophy-fill text-white study-icon-sm"></i></div>
+<h6>EXAM</h6>
+</div>
+<div class="exam-card">
+<div class="exam-icon"><i class="bi bi-calendar-week-fill text-white study-icon-sm"></i></div>
+<h6>WEEKLY</h6>
+</div>
+<div class="exam-card">
+<div class="exam-icon"><i class="bi bi-calendar-month-fill text-white study-icon-sm"></i></div>
+<h6>MONTHLY</h6>
+</div>
+<div class="exam-card">
+<div class="exam-icon"><i class="bi bi-collection-fill text-orange study-icon-sm"></i></div>
+<h6>SUBJECTS</h6>
+</div>
+<div class="exam-card">
+<div class="exam-icon"><i class="fas fa-briefcase"></i></div>
 <h6>SSC</h6>
 </div>
 <div class="exam-card">
-<div class="exam-icon">
-<i class="fas fa-train"></i>
-</div>
+<div class="exam-icon"><i class="fas fa-train"></i></div>
 <h6>Railway</h6>
 </div>
 <div class="exam-card">
-<div class="exam-icon">
-<i class="fas fa-university"></i>
-</div>
+<div class="exam-icon"><i class="fas fa-university"></i></div>
 <h6>Bank</h6>
 </div>
 <div class="exam-card">
-<div class="exam-icon">
-<i class="fas fa-award"></i>
-</div>
+<div class="exam-icon"><i class="fas fa-award"></i></div>
 <h6>UPSC</h6>
 </div>
-</div></div>
+<div class="exam-card">
+<div class="exam-icon"><i class="fas fa-shield-alt"></i></div>
+<h6>Defence</h6>
+</div>
+<div class="exam-card">
+<div class="exam-icon"><i class="fas fa-landmark"></i></div>
+<h6>SPSC</h6>
+</div>
+</div>
+
+<!-- Latest Updates -->
+<div class="latest-updates">
+<h5><i class="fas fa-bell me-2"></i>LATEST UPDATES</h5>
+<div class="update-item">
+<div class="update-icon"><i class="fas fa-file-alt"></i></div>
+<div class="update-content">
+<h6>SSC CGL Result 2024</h6>
+<p>Declared • 2 hours ago</p>
+</div>
+<i class="fas fa-chevron-right update-arrow"></i>
+</div>
+<div class="update-item">
+<div class="update-icon"><i class="fas fa-bullhorn"></i></div>
+<div class="update-content">
+<h6>Railway Group D Recruitment</h6>
+<p>New Vacancy • 1 day ago</p>
+</div>
+<i class="fas fa-chevron-right update-arrow"></i>
+</div>
+<div class="update-item">
+<div class="update-icon"><i class="fas fa-key"></i></div>
+<div class="update-content">
+<h6>Bank PO Answer Key Released</h6>
+<p>Check now • 3 days ago</p>
+</div>
+<i class="fas fa-chevron-right update-arrow"></i>
+</div>
+<div class="update-item">
+<div class="update-icon"><i class="fas fa-calendar-check"></i></div>
+<div class="update-content">
+<h6>UPSC Annual Calendar 2025</h6>
+<p>Download PDF • 1 week ago</p>
+</div>
+<i class="fas fa-chevron-right update-arrow"></i>
+</div>
+</div>
+
+</div>
 </section>
 
 <!-- Search Section -->
 <section id="searchSection" class="content-section">
-<div class="container">
+<div class="container-fluid">
 <div class="search-header">
 <div class="search-box">
 <i class="fas fa-search"></i>
@@ -311,14 +331,17 @@
 </div>
 <div class="search-results">
 <!-- Dummy Search Results -->
-<div class="search-category"><h6>Users</h6>
+<div class="search-category">
+<h6>Users</h6>
 <div class="search-item">
 <div class="search-item-icon">
 <i class="fas fa-user-circle"></i>
 </div>
 <div class="search-item-content">
 <p class="search-item-title">Rahul Verma</p>
-<p class="search-item-subtitle">@rahul_ssc</p></div></div>
+<p class="search-item-subtitle">@rahul_ssc</p>
+</div>
+</div>
 <div class="search-item">
 <div class="search-item-icon">
 <i class="fas fa-user-circle"></i>
@@ -327,7 +350,8 @@
 <p class="search-item-title">Amit Kumar</p>
 <p class="search-item-subtitle">@amit_webdev</p>
 </div>
-</div></div>
+</div>
+</div>
 <div class="search-category">
 <h6>Topics</h6>
 <div class="search-item">
@@ -346,12 +370,16 @@
 <div class="search-item-content">
 <p class="search-item-title">Physics</p>
 <p class="search-item-subtitle">892 posts</p>
-</div></div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- Message Section -->
 <section id="messageSection" class="content-section">
-<div class="container">
+<div class="container-fluid">
 <div class="section-header">
 <h4><i class="fas fa-envelope me-2"></i>Messages</h4>
 </div>
@@ -367,18 +395,20 @@
 <span class="message-time">10m</span>
 </div>
 <p class="message-preview">Thanks for sharing those notes!</p>
-</div></div>
+</div>
+</div>
 <div class="message-item">
 <div class="message-avatar">
 <i class="fas fa-user-circle"></i>
-                            </div>
+</div>
 <div class="message-content">
 <div class="message-header">
 <h6>Amit Kumar</h6>
 <span class="message-time">2h</span>
 </div>
 <p class="message-preview">Can you help me with this problem?</p>
-</div></div>
+</div>
+</div>
 <div class="message-item">
 <div class="message-avatar">
 <i class="fas fa-user-circle"></i>
@@ -397,7 +427,7 @@
 
 <!-- Profile Section -->
 <section id="profileSection" class="content-section">
-<div class="container">
+<div class="container-fluid">
 <!-- Profile Header -->
 <div class="profile-header">
 <div class="profile-avatar">
@@ -413,13 +443,16 @@
 <h5>15</h5>
 <p>Posts</p>
 </div>
-<div class="stat-item"><h5>1.2k</h5><p>Followers</p>
+<div class="stat-item">
+<h5>1.2k</h5>
+<p>Followers</p>
 </div>
-
 <div class="stat-item">
 <h5>300</h5>
 <p>Following</p>
-</div></div></div>
+</div>
+</div>
+</div>
 
 <!-- Profile Menu -->
 <div class="profile-menu">
@@ -435,14 +468,16 @@
 <i class="fas fa-cog"></i>
 </div>
 <span>Settings</span>
-<i class="fas fa-chevron-right ms-auto"></i></div>
+<i class="fas fa-chevron-right ms-auto"></i>
+</div>
 <div class="profile-menu-item" id="helpSupportBtn">
 <div class="menu-item-icon">
 <i class="fas fa-question-circle"></i>
 </div>
 <span>Help & Support</span>
 <i class="fas fa-chevron-right ms-auto"></i>
-</div></div>
+</div>
+</div>
 
 <button class="btn btn-danger w-100 mt-4" id="logoutBtn">
 <i class="fas fa-sign-out-alt me-2"></i>Log Out
@@ -452,7 +487,7 @@
 
 <!-- Settings Section -->
 <section id="settingsSection" class="content-section">
-<div class="container">
+<div class="container-fluid">
 <div class="section-header mb-4">
 <button class="back-btn" id="settingsBackBtn">
 <i class="fas fa-arrow-left"></i>
@@ -487,7 +522,8 @@
 </div>
 <span class="text-muted">English</span>
 <i class="fas fa-chevron-right ms-2"></i>
-</div></div>
+</div>
+</div>
 
 <div class="settings-group">
 <h6 class="settings-group-title">Security</h6>
@@ -502,10 +538,12 @@
 <div class="settings-item-content">
 <i class="fas fa-fingerprint me-3"></i>
 <span>Biometric Login</span>
-                            </div>
+</div>
 <div class="form-check form-switch">
 <input class="form-check-input" type="checkbox" id="biometricLogin" checked>
-</div></div></div>
+</div>
+</div>
+</div>
 
 <div class="settings-group">
 <h6 class="settings-group-title">Data</h6>
@@ -522,7 +560,7 @@
 
 <!-- Account Center Section -->
 <section id="accountCenterSection" class="content-section">
-<div class="container">
+<div class="container-fluid">
 <div class="section-header mb-4">
 <button class="back-btn" id="accountBackBtn">
 <i class="fas fa-arrow-left"></i>
@@ -556,7 +594,7 @@
 
 <!-- Notes Sub-Page -->
 <section id="notesSubPage" class="content-section">
-<div class="container">
+<div class="container-fluid">
 <div class="section-header mb-4">
 <button class="back-btn" id="notesBackBtn">
 <i class="fas fa-arrow-left"></i>
@@ -587,23 +625,51 @@
 <button class="btn btn-sm btn-primary">
 <i class="fas fa-download"></i>
 </button>
-</div></div></div>
+</div>
+</div>
+</div>
 </section>
 
 </main>
+</div>
 
-<!-- Post Creation Modal -->
+<!-- Create Post Modal -->
 <div class="modal fade" id="createPostModal" tabindex="-1">
-<div class="modal-dialog modal-dialog-centered modal-lg">
+<div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
 <div class="modal-content">
+
+<!-- Modal Header -->
 <div class="modal-header">
 <h5 class="modal-title">Create Post</h5>
 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 </div>
+
+<!-- Modal Body -->
 <div class="modal-body">
+
+<!-- DRAFT LIST SECTION -->
+<div id="draftListSection" class="draft-list-section" style="display: none;">
+<div class="draft-list-header">
+<h5><i class="fas fa-save me-2"></i>Saved Drafts</h5>
+<button class="btn-close-drafts" onclick="closeDraftList()">
+<i class="fas fa-times"></i>
+</button>
+</div>
+
+<div id="draftListContainer" class="draft-list-container">
+<div class="empty-drafts">
+<i class="fas fa-inbox"></i>
+<p>No drafts saved yet</p>
+</div>
+</div>
+</div>
+
+<!-- POST CREATION FORM -->
+<div id="postCreationForm" class="post-creation-form">
+
 <!-- Post Type Selection -->
-<div class="post-type-selection mb-4">
-<h6 class="mb-3">Choose Type</h6>
+<div class="post-type-selection">
+<h6>Choose Type</h6>
 <div class="post-types">
 <button class="post-type-btn active" data-type="text">
 <i class="fas fa-pencil-alt"></i>
@@ -631,74 +697,61 @@
 <!-- Text Post Form -->
 <div id="textPostForm" class="post-form active">
 <div class="mb-3">
-<textarea class="form-control" rows="4" placeholder="What's Your Question?" id="textPostContent"></textarea>
+<textarea class="form-control" rows="4" placeholder="What's on your mind?" id="textPostContent"></textarea>
 </div>
-<div class="bg-color-selector mb-3">
+<div class="bg-color-selector">
 <label class="form-label">Background Color</label>
 <div class="color-options">
-
 <div class="color-option active" data-color="white" style="background: white; border: 2px solid #dee2e6;"></div>
-
 <div class="color-option" data-color="silver" style="background: silver;"></div>
-
 <div class="color-option" data-color="cyan" style="background: cyan;"></div>
-
 <div class="color-option" data-color="magenta" style="background: magenta;"></div>
-
-
 <div class="color-option" data-color="green" style="background: green;"></div><br>
-
 <div class="color-option" data-color="pink" style="background: pink;"></div>
-
-
 <div class="color-option" data-color="purple" style="background: purple;"></div>
 <div class="color-option" data-color="black" style="background: black;"></div>
 <div class="color-option" data-color="blue" style="background: blue;"></div>
 <div class="color-option" data-color="orange" style="background: orange;"></div>
 <div class="color-option" data-color="teal" style="background: teal;"></div>
 <div class="color-option" data-color="#ab47bc" style="background: #ab47bc;"></div>
-</div></div></div>
+</div>
+</div>
+</div>
 
-<!-- MCQ Quiz Form -->
+<!-- Quiz Post Form  -->
 <div id="quizPostForm" class="post-form">
 <div class="mb-3">
 <label class="form-label">Question</label>
-<textarea class="form-control" rows="2" placeholder="Ask a question..." id="quizQuestion"></textarea>
+<input type="text" class="form-control" placeholder="Ask a question..." id="quizQuestion">
 </div>
 <div class="mb-3">
 <label class="form-label">Options (Tick Correct)</label>
-<div class="quiz-options">
-<div class="input-group mb-2">
-<div class="input-group-text">
-<input class="form-check-input mt-0" type="radio" name="correctOption" value="0" id="optionA">
-</div>
+<div class="quiz-options-new">
+<div class="quiz-option-item">
+<input class="form-check-input" type="radio" name="correctOption" value="0" id="optionARadio">
 <input type="text" class="form-control" placeholder="Option A" id="quizOptionA">
 </div>
-<div class="input-group mb-2">
-<div class="input-group-text">
-<input class="form-check-input mt-0" type="radio" name="correctOption" value="1" id="optionB">
-</div>
+<div class="quiz-option-item">
+<input class="form-check-input" type="radio" name="correctOption" value="1" id="optionBRadio">
 <input type="text" class="form-control" placeholder="Option B" id="quizOptionB">
 </div>
-<div class="input-group mb-2">
-  <div class="input-group-text">
-<input class="form-check-input mt-0" type="radio" name="correctOption" value="2" id="optionC">
-</div>
+<div class="quiz-option-item">
+<input class="form-check-input" type="radio" name="correctOption" value="2" id="optionCRadio">
 <input type="text" class="form-control" placeholder="Option C" id="quizOptionC">
 </div>
-<div class="input-group mb-2">
-<div class="input-group-text">
-<input class="form-check-input mt-0" type="radio" name="correctOption" value="3" id="optionD">
-</div>
+<div class="quiz-option-item">
+<input class="form-check-input" type="radio" name="correctOption" value="3" id="optionDRadio">
 <input type="text" class="form-control" placeholder="Option D" id="quizOptionD">
 </div>
-</div></div>
+</div>
+</div>
 <div class="mb-3">
 <label class="form-label">Explanation</label>
 <textarea class="form-control" rows="2" placeholder="Why is this correct?" id="quizExplanation"></textarea>
-</div></div>
+</div>
+</div>
 
-<!-- Poll Form -->
+<!-- Poll Form (FIXED - HORIZONTAL) -->
 <div id="pollPostForm" class="post-form">
 <div class="mb-3">
 <label class="form-label">Poll Question</label>
@@ -706,21 +759,22 @@
 </div>
 <div class="mb-3">
 <label class="form-label">Select Correct</label>
-<div class="poll-options">
-<div class="form-check">
+<div class="poll-options-new">
+<div class="poll-option-box">
 <input class="form-check-input" type="radio" name="pollCorrect" id="pollYes" value="yes">
-<label class="form-check-label" for="pollYes">Yes</label>
+<label class="poll-label poll-yes" for="pollYes">Yes</label>
 </div>
-<div class="form-check">
+<div class="poll-option-box">
 <input class="form-check-input" type="radio" name="pollCorrect" id="pollNo" value="no">
-<label class="form-check-label" for="pollNo">No</label>
+<label class="poll-label poll-no" for="pollNo">No</label>
 </div>
 </div>
 </div>
 <div class="mb-3">
 <label class="form-label">Explanation</label>
 <textarea class="form-control" rows="2" placeholder="Reasoning..." id="pollExplanation"></textarea>
-</div></div>
+</div>
+</div>
 
 <!-- Flashcard Form -->
 <div id="cardPostForm" class="post-form">
@@ -731,7 +785,8 @@
 <div class="mb-3">
 <label class="form-label">Back Side</label>
 <textarea class="form-control" rows="3" placeholder="Meaning / Definition" id="cardBack"></textarea>
-</div></div>
+</div>
+</div>
 
 <!-- Media Post Form -->
 <div id="mediaPostForm" class="post-form">
@@ -744,36 +799,95 @@
 <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
 <p>Tap to Upload Photo</p>
 <input type="file" class="d-none" id="mediaUpload" accept="image/*">
-</div></div></div></div>
+</div>
+</div>
+</div>
 
-<div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-<button type="button" class="btn btn-primary" id="publishPostBtn">
+</div>
+</div>
+
+<!-- Modal Footer (NEW LAYOUT) -->
+<div class="modal-footer-new">
+<div class="footer-top-row">
+<button type="button" class="btn btn-outline-secondary btn-sm" id="viewDraftsBtn">
+<i class="fas fa-folder-open me-1"></i> Drafts
+</button>
+<button type="button" class="btn btn-outline-primary btn-sm" id="saveDraftBtn">
+<i class="fas fa-save me-1"></i> Save Draft
+</button>
+</div>
+<button type="button" class="btn btn-primary btn-lg w-100" id="publishPostBtn">
 <i class="fas fa-paper-plane me-2"></i>Post
-</button></div></div></div>
+</button>
+</div>
+
+</div>
+</div>
 </div>
 
 <!-- Bottom Navigation -->
-<nav id="bottomNav" class="bottom-nav d-none">
+<nav id="bottomNav" class="bottom-nav">
 <button class="nav-item active" data-section="homeFeed">
-<i class="fas fa-home"></i><span>Home</span></button>
+<i class="fas fa-home"></i>
+</button>
 <button class="nav-item" data-section="notificationSection">
 <i class="fas fa-bell"></i>
-<span>Notifications</span>
 </button>
 <button class="nav-item" data-section="studySection">
 <i class="fas fa-book"></i>
-<span>Study</span>
 </button>
 <button class="nav-item" data-section="searchSection">
 <i class="fas fa-search"></i>
-<span>Search</span>
 </button>
 <button class="nav-item" data-section="profileSection">
 <i class="fas fa-user"></i>
-<span>Profile</span>
 </button>
 </nav>
+
+<!-- Kebab Menu -->
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="kebabMenu">
+<div class="offcanvas-header justify-content-center pb-2 pt-3">
+<div class="menu-handle"></div>
+</div>
+<div class="offcanvas-body px-0 pt-2 pb-0">
+<div class="menu-list-item" onclick="handleMenuAction('copyLink')">
+<i class="bi bi-link-45deg"></i><span>Copy Link</span>
+</div>
+<div class="menu-list-item" onclick="handleMenuAction('share')">
+<i class="bi bi-share"></i><span>Share via...</span>
+</div>
+<div class="menu-list-item" onclick="handleMenuAction('notInterested')">
+<i class="bi bi-eye-slash"></i><span>Not interested</span>
+</div>
+<div class="menu-divider"></div>
+<div class="menu-list-item" id="menuFollowItem" onclick="handleMenuAction('follow')">
+<i class="bi bi-person-plus"></i><span id="menuFollowText">Follow</span>
+</div>
+<div class="menu-list-item" id="menuMuteItem" onclick="handleMenuAction('mute')">
+<i class="bi bi-volume-mute"></i><span id="menuMuteText">Mute</span>
+</div>
+<div class="menu-divider"></div>
+<div class="menu-list-item danger-item" id="menuReportItem" onclick="handleMenuAction('report')">
+<i class="bi bi-flag"></i><span>Report</span>
+</div>
+<div class="menu-list-item danger-item" id="menuBlockItem" onclick="handleMenuAction('block')">
+<i class="bi bi-slash-circle"></i><span>Block</span>
+</div>
+<div class="menu-list-item danger-item" id="menuDeleteItem" style="display:none;" onclick="handleMenuAction('delete')">
+<i class="bi bi-trash"></i><span>Delete Post</span>
+</div>
+<div class="menu-divider-thick"></div>
+<div class="menu-list-item menu-cancel-btn" data-bs-dismiss="offcanvas">
+<span>Cancel</span>
+</div>
+</div>
+</div>
+
+<!-- Toast -->
+<div class="toast-container">
+<div id="actionToast" class="toast custom-toast">
+<div class="toast-body" id="toastMessage">Action</div>
+</div>
 </div>
 
 <!-- Firebase SDK -->
@@ -789,8 +903,7 @@
 <script src="https://masd.neocities.org/anna/javascript/firebase-cfg.js"></script>
 <script src="https://masd.neocities.org/anna/javascript/main.js"></script>
 <script src="https://masd.neocities.org/anna/javascript/auth.js"></script>
-<script src="https://masd.neocities.org/anna/javascript/feed.js"></script>
-<script src="https://masd.neocities.org/anna/javascript/postcard.js"></script>
+<script src="https://masd.neocities.org/anna/javascript/posts.js"></script>
 <script src="https://masd.neocities.org/anna/javascript/creation.js"></script>
 <script src="https://masd.neocities.org/anna/javascript/profile.js"></script>
 <script src="https://masd.neocities.org/anna/javascript/study.js"></script>
@@ -800,6 +913,3 @@
 
 </body>
 </html>
-
-
-
