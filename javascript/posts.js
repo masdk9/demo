@@ -576,6 +576,30 @@ window.postsFunctions = {
     savePost
 };
 
+
+// ==== comment page ===
+function openCommentPage(postId) {
+    // 1. Saare sections hide karein aur comment section show karein
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    const commentSec = document.getElementById('commentSection');
+    commentSec.classList.add('active');
+    
+    // 2. Bottom Nav hide karein (optional, Instagram comments mein nav chup jati hai)
+    document.getElementById('bottomNav').style.display = 'none';
+
+    // 3. Post ID save karein taaki pata rahe kispe comment ho raha hai
+    currentPostId = postId;
+
+    // 4. Comments load karein Firebase se
+    loadComments(postId);
+}
+
+
+
+
+
+
+
 // === AUTO INITIALIZE ===
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializePosts);
