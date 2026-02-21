@@ -1057,6 +1057,41 @@
         margin: 1rem -1rem; }
 }
 
+
+
+/* === comment page=== */
+#commentSection {
+    background: var(--surface-color);
+    min-height: 100vh;
+    display: none; /* Default hidden */
+}
+
+#commentSection.active {
+    display: block;
+}
+
+.comment-input-wrapper {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: inherit; /* Jo aapke main container ki width hai */
+    z-index: 1000;
+}
+
+.comment-user-avatar {
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+}
+
+
+
+
+
+
+
+
 /* === DARK MODE === */
 body.dark-mode .post-content.colored-bg {
     filter: brightness(0.8);
