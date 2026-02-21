@@ -566,4 +566,24 @@ if (document.readyState === 'loading') {
     initializeMessages();
 }
 
+
+
+
+// Message Button Handler
+const messagesBtn = document.getElementById('messagesBtn');
+if (messagesBtn) {
+    messagesBtn.addEventListener('click', function() {
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        const messageSection = document.getElementById('messageSection');
+        if (messageSection) messageSection.classList.add('active');
+    });
+}
+
+
+
+
+
+
+
 console.log('Message.js loaded successfully');
